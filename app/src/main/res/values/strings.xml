@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Submission1</string>
+    <string name="LOGOUT">LOGOUT</string>
+    <string name="DESKRIPSI">DESKRIPSI</string>
+    <string name="passwod">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="emptyAlert">not filled</string>
+    <string name="invalidEmail">Invalid email type</string>
+    <string name="passworAlert">Password must at least 6</string>
+    <string name="emailHint">Enter your Email</string>
+    <string name="passwordHint">Enter Your Password</string>
+</resources>
