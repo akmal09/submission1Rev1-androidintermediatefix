@@ -42,20 +42,21 @@ class RegisterActivity : AppCompatActivity() {
                         startActivity(intent)
                     }else{
                         showLoading(false)
-                        Toast.makeText(this, "GAGAL", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Email sudah ada / ada inputan yang tidak sesuai", Toast.LENGTH_SHORT).show()
+                        val intent = intent
+                        finish()
+                        startActivity(intent)
                     }
                 })
             }
         }
     }
 
-    private fun validasi(): Boolean = valiName() && valiEmail() && valiPassword()
+    private fun validasi(): Boolean = valiName()
 
     private fun setListener() {
         with(binding) {
             namaEditText.addTextChangedListener(validasiInput(namaEditText))
-            emailEditText.addTextChangedListener(validasiInput(emailEditText))
-            passwordEditText.addTextChangedListener(validasiInput(passwordEditText))
         }
     }
 
@@ -69,33 +70,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun valiEmail(): Boolean {
-        if (binding.emailEditText.text.toString().trim().isEmpty()) {
-            binding.emailEditText.error = "Jangan Kosong"
-            binding.emailEditText.requestFocus()
-            return false
-        }else if(!ValidatorHelper.cekEmail(binding.emailEditText.text.toString())){
-            binding.emailEditText.error = "Invalid email type"
-            binding.emailEditText.requestFocus()
-            return false
-        }else{
-            return true
-        }
-    }
 
-    private fun valiPassword(): Boolean {
-        if (binding.passwordEditText.text.toString().trim().isEmpty()) {
-            binding.passwordEditText.error = "Jangan Kosong"
-            binding.passwordEditText.requestFocus()
-            return false
-        }else if (binding.passwordEditText.text.toString().length < 6) {
-            binding.passwordEditText.error = "password kurang dari 6"
-            binding.passwordEditText.requestFocus()
-            return false
-        }else{
-            return true
-        }
-    }
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
@@ -112,12 +87,6 @@ class RegisterActivity : AppCompatActivity() {
             when (view.id) {
                 R.id.nama_edit_text ->{
                     valiName()
-                }
-                R.id.email_edit_text -> {
-                    valiEmail()
-                }
-                R.id.password_edit_text -> {
-                    valiPassword()
                 }
             }
         }

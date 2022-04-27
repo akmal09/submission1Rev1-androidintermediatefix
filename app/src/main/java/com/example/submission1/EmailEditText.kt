@@ -10,11 +10,12 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.submission1.ValidatorHelper.cekEmail
 
 class EmailEditText : AppCompatEditText, View.OnTouchListener {
 
-    var returnEmail : Boolean = false
     constructor(context: Context): super(context){
         init()
     }
@@ -42,12 +43,9 @@ class EmailEditText : AppCompatEditText, View.OnTouchListener {
                     error = "template email tidak sesuai"
                 }else if (p0.toString().isEmpty()) {
                     error = "email harus diisi"
-                }else{
-                    returnEmail = true
                 }
             }
         })
-        Log.d("cekemail","$returnEmail")
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -57,10 +55,6 @@ class EmailEditText : AppCompatEditText, View.OnTouchListener {
 
     override fun onTouch(p0: View, p1: MotionEvent?): Boolean {
         return false
-    }
-
-    fun checkEmail():Boolean {
-        return returnEmail
     }
 
 }

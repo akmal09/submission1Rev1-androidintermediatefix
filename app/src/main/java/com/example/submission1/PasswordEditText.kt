@@ -11,7 +11,8 @@ import androidx.appcompat.widget.AppCompatEditText
 
 class PasswordEditText : AppCompatEditText, View.OnTouchListener {
 
-    var returnPassword :Boolean = false
+    private var returnPassword :Boolean = false
+    var cekpassword = returnPassword
     constructor(context: Context): super(context){
         init()
     }
@@ -39,11 +40,8 @@ class PasswordEditText : AppCompatEditText, View.OnTouchListener {
                     error = "password kurang dari 6"
                 }else if (p0.toString().isEmpty()) {
                     error = "password harus diisi dan minimal 6"
-                }else{
-                    returnPassword = true
                 }
             }
-
         })
     }
 
@@ -56,9 +54,13 @@ class PasswordEditText : AppCompatEditText, View.OnTouchListener {
         return false
     }
 
-    fun checkPassword():Boolean {
-        return returnPassword
+    private fun setPasswordValue() {
+        returnPassword = true
     }
+
+//    fun checkPassword():Boolean {
+//        return returnPassword
+//    }
 
 //    private fun valiPassword(): Boolean {
 //        if (binding.passwordEditText.text.toString().trim().isEmpty()) {

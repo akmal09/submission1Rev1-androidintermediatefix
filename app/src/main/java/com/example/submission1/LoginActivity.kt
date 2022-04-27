@@ -45,8 +45,8 @@ class LoginActivity : AppCompatActivity() {
         authViewModel =ViewModelProvider(this@LoginActivity).get(AuthViewModel::class.java)
 
         binding.loginButton.setOnClickListener{
-            Log.d("loginactivitu","${passwordEditText.checkPassword()}, ${emailEditText.checkEmail()}")
-            if (passwordEditText.checkPassword()&&emailEditText.checkEmail()) {
+            Log.d("loginactivitu","${passwordEditText.error}, ${emailEditText.error}")
+            if (passwordEditText.error==null&&emailEditText.error==null) {
                 val email = binding.emailEditText.text.toString().trim()
                 val password = binding.passwordEditText.text.toString().trim()
                 authViewModel.loginLauncher(email, password)
@@ -61,6 +61,9 @@ class LoginActivity : AppCompatActivity() {
                     }else{
                         showLoading(false)
                         Toast.makeText(this, "GAGAL", Toast.LENGTH_SHORT).show()
+                        val intent = intent
+                        finish()
+                        startActivity(intent)
                     }
                 })
             }else{
